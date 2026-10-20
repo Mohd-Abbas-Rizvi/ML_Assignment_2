@@ -87,7 +87,47 @@ source.venv/bin/activate
 python -m pip install -r requirements.txt
 
 ```
+### Reproducing the Experiments
 
+The repository provides `reproduce.sh` for running the experiments on macOS or Linux.
+
+First, create the Python environment:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+```
+
+Make the script executable:
+
+```bash
+chmod +x reproduce.sh
+```
+
+Run individual experiments:
+
+```bash
+./reproduce.sh q1
+./reproduce.sh q2
+./reproduce.sh q3
+```
+
+Run the complete assignment:
+
+```bash
+./reproduce.sh all
+```
+
+Regenerate plots from existing results without retraining:
+
+```bash
+./reproduce.sh plots
+```
+
+The script reuses the committed dataset split and executes the experiment scripts in the required order. Q3(a) and Q3(b) are computationally expensive, so saved logs and checkpoints are also included in the repository.
+
+For individual script commands and output descriptions, refer to the detailed reproduction sections below.
 ### Reproduction Commands
 
 Run the following commands from the project root.
