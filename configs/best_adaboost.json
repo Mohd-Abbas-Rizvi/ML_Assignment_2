@@ -1,0 +1,12 @@
+{
+  "algorithm": "SAMME",
+  "max_depth": 4,
+  "requested_rounds": 100,
+  "actual_rounds": 100,
+  "train_accuracy": 0.9708333333333333,
+  "validation_accuracy": 0.325,
+  "clean_test_accuracy": 0.3125,
+  "training_time_seconds": 20.484711375000188,
+  "stop_reason": "requested_rounds_reached",
+  "seed": 26014
+}

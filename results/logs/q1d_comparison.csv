@@ -1,0 +1,3 @@
+condition,tree_accuracy,bagging_accuracy,tree_mean_confidence,bagging_mean_confidence
+Clean,0.6,0.9125,0.9580357142857144,0.36912500000000004
+Masked,0.6,0.65,0.9580357142857144,0.2985

@@ -1,0 +1,21 @@
+{
+  "selected_B": 100,
+  "selection_metric": "validation_accuracy",
+  "validation_accuracy": 0.9,
+  "clean_test_accuracy": 0.9125,
+  "masked_test_accuracy": 0.65,
+  "clean_test_mean_vote_margin": 0.261375,
+  "masked_test_mean_vote_margin": 0.14900000000000002,
+  "tree_config": {
+    "max_depth": null,
+    "min_samples_leaf": 4,
+    "train_accuracy": 0.9666666666666667,
+    "validation_accuracy": 0.6,
+    "n_leaves": 41,
+    "actual_depth": 31,
+    "mean_samples_per_leaf": 5.853658536585366,
+    "fraction_single_sample_leaves": 0.0,
+    "test_accuracy": 0.6
+  },
+  "seed": 26014
+}

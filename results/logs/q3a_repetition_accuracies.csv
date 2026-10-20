@@ -1,0 +1,91 @@
+model,repetition,test_accuracy
+Single Tree,1,0.5625
+Single Tree,2,0.5125
+Single Tree,3,0.5125
+Single Tree,4,0.4875
+Single Tree,5,0.45
+Single Tree,6,0.5625
+Single Tree,7,0.475
+Single Tree,8,0.5
+Single Tree,9,0.45
+Single Tree,10,0.475
+Single Tree,11,0.475
+Single Tree,12,0.425
+Single Tree,13,0.525
+Single Tree,14,0.5
+Single Tree,15,0.4625
+Single Tree,16,0.5625
+Single Tree,17,0.5125
+Single Tree,18,0.4625
+Single Tree,19,0.525
+Single Tree,20,0.4875
+Single Tree,21,0.5
+Single Tree,22,0.575
+Single Tree,23,0.5
+Single Tree,24,0.6
+Single Tree,25,0.525
+Single Tree,26,0.5625
+Single Tree,27,0.5125
+Single Tree,28,0.4875
+Single Tree,29,0.525
+Single Tree,30,0.4125
+Bagging,1,0.825
+Bagging,2,0.75
+Bagging,3,0.8125
+Bagging,4,0.7375
+Bagging,5,0.7375
+Bagging,6,0.775
+Bagging,7,0.7375
+Bagging,8,0.75
+Bagging,9,0.825
+Bagging,10,0.7875
+Bagging,11,0.7375
+Bagging,12,0.8375
+Bagging,13,0.7625
+Bagging,14,0.8125
+Bagging,15,0.775
+Bagging,16,0.75
+Bagging,17,0.775
+Bagging,18,0.725
+Bagging,19,0.725
+Bagging,20,0.75
+Bagging,21,0.875
+Bagging,22,0.7125
+Bagging,23,0.8125
+Bagging,24,0.8125
+Bagging,25,0.8
+Bagging,26,0.7875
+Bagging,27,0.7875
+Bagging,28,0.8
+Bagging,29,0.7625
+Bagging,30,0.8125
+SAMME,1,0.4125
+SAMME,2,0.3
+SAMME,3,0.3875
+SAMME,4,0.225
+SAMME,5,0.3875
+SAMME,6,0.4125
+SAMME,7,0.2625
+SAMME,8,0.45
+SAMME,9,0.325
+SAMME,10,0.3375
+SAMME,11,0.35
+SAMME,12,0.375
+SAMME,13,0.3375
+SAMME,14,0.175
+SAMME,15,0.4125
+SAMME,16,0.2125
+SAMME,17,0.225
+SAMME,18,0.4375
+SAMME,19,0.3375
+SAMME,20,0.2125
+SAMME,21,0.375
+SAMME,22,0.375
+SAMME,23,0.4
+SAMME,24,0.425
+SAMME,25,0.4125
+SAMME,26,0.2625
+SAMME,27,0.225
+SAMME,28,0.325
+SAMME,29,0.3125
+SAMME,30,0.45

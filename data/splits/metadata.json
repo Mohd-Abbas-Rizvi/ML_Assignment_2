@@ -1,0 +1,11 @@
+{
+  "roll_number": "M26CSA014",
+  "seed": 26014,
+  "dataset": "Olivetti Faces",
+  "n_samples": 400,
+  "n_features": 4096,
+  "n_classes": 40,
+  "train_per_identity": 6,
+  "validation_per_identity": 2,
+  "test_per_identity": 2
+}
