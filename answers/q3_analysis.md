@@ -1,139 +1,104 @@
-# Question 3. Bias–Variance Analysis
+# Question 3 — Bias–Variance Analysis
 
-## Q3(a): Bias and Variance
+## Q3(a): Measured Bias and Variance
 
-I ran the experiment with thirty resampled training sets.
+The experiment used 30 independently resampled training sets, each containing six bootstrap draws from each of the 40 identities. The original validation and test sets were held fixed.
 
-Each training set was built from six bootstrap draws for every one of the forty identities.
+For each refit, the models produced 40-dimensional class-score vectors on the same 80 clean test images.
 
-I kept the validation and test sets unchanged.
-
-For every refit each model produced a forty‑dimensional vector on the same eighty clean test images.
+The resulting squared bias, variance, and accuracy measurements were:
 
 | Model | Bias² | Variance | Mean Test Accuracy | Accuracy Std. Dev. |
-
 |---|---:|---:|---:|---:|
-
 | Single Tree | 0.3550 | 0.6367 | 50.42% | 4.44 pp |
+| Bagging | 0.5246 | 0.0257 | 77.83% | 3.92 pp |
+| SAMME | 0.8824 | 0.0169 | 33.79% | 8.05 pp |
 
-| Bagging | 0.5246 | 0.0257 | 77.83% | 3.92 pp|
-
-| SAMME | 0.8824 | 0.0169 | 33.79% 8.05 pp |
-
-The single tree showed the largest class‑vector variance.
-
-Bagging cut variance by a margin and also achieved the highest mean test accuracy.
-
-SAMME had the measured variance but the biggest squared bias showing that low variance alone does not guarantee good generalization.
+The single tree exhibited the largest class-vector variance. Bagging reduced variance substantially while achieving the highest mean test accuracy. SAMME exhibited the lowest measured variance but the largest squared bias, illustrating that low variance alone does not imply good generalization.
 
 ## Q3(b): Effect of Tree Depth
 
-The experiments tested maximum‑depth settings of four, sixteen and none (unrestricted).
+The experiments compared maximum-depth settings of 4, 16, and None (unrestricted), using min_samples_leaf=4.
 
-I used min_samples_leaf to four.
-
-All depth levels used the thirty resampled training sets and each bagged ensemble contained one hundred trees.
+All depths used the same 30 resampled training sets, and every bagged ensemble contained 100 trees.
 
 | Depth | Method | Bias² | Variance | Mean Accuracy |
-
 |---|---|---:|---:|---:|
-
 | 4 | Single Tree | 0.8595 | 0.0643 | 9.79% |
-
 | 4 | Bagging | 0.8960 | 0.0132 | 27.04% |
-
-| 16 | Single Tree | 0.6509 | 0.2237 27.38% |
-
+| 16 | Single Tree | 0.6509 | 0.2237 | 27.38% |
 | 16 | Bagging | 0.6764 | 0.0217 | 61.29% |
-
-| None | Single Tree | 0.3550 | 0.6367 50.42% |
-
+| None | Single Tree | 0.3550 | 0.6367 | 50.42% |
 | None | Bagging | 0.5246 | 0.0257 | 77.83% |
 
-Increasing the allowed depth lowered the single tree’s squared bias but raised its variance.
+Increasing the maximum permitted depth reduced the single tree's squared bias while increasing variance. Bagging reduced variance at all three depths.
 
-Bagging cut variance at all three depths.
-
-I chose a baseline with max_depth set to none meaning no depth limit.
-
-Because no depth can be deeper than growth I compared depths four and sixteen with this unrestricted setting.
-
-I acknowledge this limitation of claiming that a depth greater than none was tested.
+The selected baseline had max_depth=None, meaning no explicit depth limit. As no setting can be deeper than unrestricted growth, depths 4 and 16 were compared with this unrestricted setting. This limitation is acknowledged instead of claiming that a depth greater than None was tested.
 
 ## Q3(c): Does the Deepest Tree Give the Largest Improvement from Bagging?
 
-No not when the improvement is measured by the gain in test accuracy.
+**No, not when improvement is measured as the gain in test accuracy.**
 
-Depth | Variance Reduction | Accuracy Gain |
-
+| Depth | Variance Reduction | Accuracy Gain |
 |---|---:|---:|
-
-| 4 | 79.53% | percentage points |
-
-| 16 | 90.31% +33.92 percentage points |
-
+| 4 | 79.53% | +17.25 percentage points |
+| 16 | 90.31% | +33.92 percentage points |
 | None | 95.97% | +27.42 percentage points |
 
-The unrestricted tree achieved the largest absolute and relative variance reduction yet the intermediate‑depth tree achieved the largest improvement in test accuracy.
+The unrestricted tree achieved the largest absolute and relative variance reduction, but the intermediate-depth tree obtained the largest improvement in test accuracy.
 
-At depth four the individual trees were strongly constrained, producing an average of five‑point‑one‑three leaves with approximately forty‑seven samples per leaf. Their bias limited classification performance even after aggregation.
+At depth 4, the individual trees were strongly constrained, producing an average of only 5.13 leaves with approximately 47 samples per leaf. Their high bias limited classification performance even after aggregation.
 
-At depth sixteen individual trees had seventeen‑point‑six leaves and thirteen‑point‑six‑six samples per leaf. Bagging reduced their variance by ninety‑point‑three percent improving accuracy from twenty‑seven‑point‑three‑eight percent to sixty‑one‑point‑two‑nine percent.
+At depth 16, individual trees had approximately 17.6 leaves and 13.66 samples per leaf. Bagging reduced their variance by 90.31%, improving mean accuracy from 27.38% to 61.29%.
 
-For trees the average number of leaves increased to forty while mean leaf occupancy fell to six. These trees had variance but lower squared bias. Bagging reduced their variance by ninety‑five‑point‑nine‑seven percent giving a smaller accuracy gain than at depth sixteen although unrestricted bagging achieved the highest absolute accuracy of seventy‑seven‑point‑eight‑three percent.
+For unrestricted trees, the average number of leaves increased to 40, while mean leaf occupancy fell to six. These trees had higher variance but lower squared bias. Bagging reduced their variance by approximately 95.97%, giving a smaller accuracy gain than at depth 16, although unrestricted bagging achieved the highest absolute accuracy of 77.83%.
 
-Mean pairwise disagreement among trees decreased from 0.9482 at depth four to 0.8931 at depth sixteen and 0.8358 at unrestricted depth.
+Mean pairwise disagreement among bagged trees decreased from 0.9482 at depth 4 to 0.8931 at depth 16 and 0.8358 at unrestricted depth.
 
-Thus neither maximum variance reduction nor maximum disagreement necessarily produces the improvement in classification accuracy. The final benefit also depends on the quality and bias of the base learners.
+Thus, neither maximum variance reduction nor maximum disagreement necessarily produces the largest improvement in classification accuracy. The final benefit also depends on the predictive quality and bias of the base learners.
 
 ## Q3(d): Final Model Comparison
 
-The following table reports evaluation of the models trained on the original fixed split alongside squared bias and variance measured across thirty refits.
+The following table reports evaluation of the frozen models trained on the original fixed split, alongside squared bias and variance measured across 30 refits.
 
-| Model | Clean Test Accuracy Masked Test Accuracy | Bias² | Variance |
-
+| Model | Clean Test Accuracy | Masked Test Accuracy | Bias² | Variance |
 |---|---:|---:|---:|---:|
-
 | Single Tree | 60.00% | 60.00% | 0.3550 | 0.6367 |
-
-|Bagging | 91.25% | 65.00% | 0.5246 | 0.0257 |
-
+| Bagging | 91.25% | 65.00% | 0.5246 | 0.0257 |
 | SAMME | 31.25% | 26.25% | 0.8824 | 0.0169 |
 
 ### Which method is most stable?
 
-Under the assignments class‑vector variance definition SAMME is the stable, with variance 0.0169.
+Under the assignment's class-vector variance definition, SAMME is the most stable, with variance 0.0169. Bagging follows closely with variance 0.0257, whereas the single tree has much larger variance, 0.6367.
 
-Bagging follows closely with variance 0.0257 whereas the single tree has a larger variance, 0.6367.
-
-However accuracy stability gives a picture. Bagging has a test‑accuracy deviation of 3.92 percentage points over 30 refits while SAMME has 8.05 percentage points. Thus stability depends on whether we measure changes in the score vectors or changes in classification accuracy.
+However, accuracy stability gives a different picture. Bagging's test-accuracy standard deviation across the 30 refits is 3.92 percentage points, compared with 8.05 percentage points for SAMME. Thus, stability depends on whether we measure changes in the score vectors or changes in classification accuracy.
 
 ### Which method is most sensitive to occlusion?
 
-The bagged model sees the absolute drop in test accuracy falling from 91.25% to 65.00% a decline of 26.25 percentage points.
+The bagged model experiences the largest absolute reduction in test accuracy, from 91.25% to 65.00%, a decline of 26.25 percentage points.
 
-The single tree stays at 60.00% accuracy on both sets while SAMME drops from 31.25% to 26.25%.
+The single tree remains at 60.00% accuracy on both sets, whereas SAMME decreases from 31.25% to 26.25%.
 
-Although bagging sees the drop bagging remains the most accurate method on masked images.
+Although bagging experiences the largest decrease, it remains the most accurate method on masked images.
 
-These results measure sensitivity under one central 16×16 occlusion pattern; they do not prove robustness to every possible image corruption.
+These results measure sensitivity under one specific central 16×16 occlusion pattern; they do not establish robustness to every possible image corruption.
 
-### Does minimum variance imply accuracy?
+### Does minimum variance imply maximum accuracy?
 
 No.
 
-SAMME has the class‑vector variance at 0.0169 but achieves only 31.25% clean test accuracy. Bagging has higher variance at 0.0257 but reaches 91.25% clean test accuracy.
+SAMME has the lowest class-vector variance at 0.0169 but achieves only 31.25% clean test accuracy. Bagging has slightly higher variance at 0.0257 but reaches 91.25% clean test accuracy.
 
-SAMME also has higher squared bias showing that its average score vectors differ a lot from the true one‑hot targets.
+SAMME also has considerably higher squared bias, indicating that its average score vectors differ substantially from the true one-hot targets.
 
-Therefore variance must be read together with bias and predictive accuracy. Low variance alone does not guarantee generalization.
+Therefore, variance must be interpreted together with bias and predictive accuracy. Low variance is not sufficient to guarantee successful generalization.
 
-##
+## Conclusion
 
-The experiments show that individual decision trees are sensitive, to training‑set resampling, especially when they grow deeply.
+The experiments show that individual decision trees are sensitive to training-set resampling, especially when allowed to grow deeply.
 
-Bagging consistently cuts prediction variance boosts recognition accuracy a lot and comes out on top among the models we looked at.
+Bagging consistently reduces prediction variance, substantially improves recognition accuracy, and performs best among the evaluated models.
 
-SAMME focuses training weight on examples but shows higher squared bias and lower classification accuracy in the tests we ran.
+SAMME concentrates training weights on difficult examples but exhibits higher squared bias and poorer classification accuracy in the tested configurations.
 
-The results show that ensemble performance relies on both stability and predictive quality of each learner not on variance reduction.
+The results demonstrate that ensemble performance depends on both the stability and predictive quality of individual learners, rather than variance reduction alone.
