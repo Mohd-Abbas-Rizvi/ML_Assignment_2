@@ -193,7 +193,7 @@ After masking, identity 2 received only six votes, while incorrect identity 13 r
 
 Mean pairwise tree disagreement on this image decreased from 0.9424 to 0.9149.
 
-Therefore, masking caused greater agreement among the bagged trees, but this agreement was concentrated around an incorrect identity.
+Masking slightly reduced pairwise disagreement from 0.9424 to 0.9149. However, disagreement remained high, and the incorrect winning identity received only 23 of the 100 votes. This reflects a shift in the vote distribution toward an incorrect identity rather than strong agreement among the ensemble members.
 
 **SAMME behavior**
 

@@ -16,6 +16,14 @@ The resulting squared bias, variance, and accuracy measurements were:
 
 The single tree exhibited the largest class-vector variance. Bagging reduced variance substantially while achieving the highest mean test accuracy. SAMME exhibited the lowest measured variance but the largest squared bias, illustrating that low variance alone does not imply good generalization.
 
+Bagging has higher squared bias (0.5246) than the single tree (0.3550), despite achieving higher mean test accuracy. This is because classification accuracy depends on the highest-scoring class, whereas squared bias measures the distance between the average class-score vector and the true one-hot target. Bagging's vote fractions are often distributed across multiple identities, producing relatively diffuse class-score vectors even when the predicted identity is correct. However, bagging substantially reduces variance, resulting in a lower combined bias–variance error.
+
+| Model | Bias² | Variance | Bias² + Variance |
+|---|---:|---:|---:|
+| Single Tree | 0.3550 | 0.6367 | 0.9917 |
+| Bagging | 0.5246 | 0.0257 | 0.5503 |
+| SAMME | 0.8824 | 0.0169 | 0.8993 |
+
 ## Q3(b): Effect of Tree Depth
 
 The experiments compared maximum-depth settings of 4, 16, and None (unrestricted), using min_samples_leaf=4.
@@ -33,7 +41,7 @@ All depths used the same 30 resampled training sets, and every bagged ensemble c
 
 Increasing the maximum permitted depth reduced the single tree's squared bias while increasing variance. Bagging reduced variance at all three depths.
 
-The selected baseline had max_depth=None, meaning no explicit depth limit. As no setting can be deeper than unrestricted growth, depths 4 and 16 were compared with this unrestricted setting. This limitation is acknowledged instead of claiming that a depth greater than None was tested.
+The selected decision-tree configuration uses max_depth=None, allowing unrestricted tree growth. Therefore, it is not possible to evaluate a maximum-depth setting deeper than the selected configuration. The experiment instead compares two shallower settings (max_depth=4 and max_depth=16) with the unrestricted setting. This is a limitation of the depth-comparison protocol, not an implementation error.
 
 ## Q3(c): Does the Deepest Tree Give the Largest Improvement from Bagging?
 
@@ -41,7 +49,7 @@ The selected baseline had max_depth=None, meaning no explicit depth limit. As no
 
 | Depth | Variance Reduction | Accuracy Gain |
 |---|---:|---:|
-| 4 | 79.53% | +17.25 percentage points |
+| 4 | 79.53% | +17.25 percentage points  |
 | 16 | 90.31% | +33.92 percentage points |
 | None | 95.97% | +27.42 percentage points |
 

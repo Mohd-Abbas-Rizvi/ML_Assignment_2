@@ -148,11 +148,11 @@ The single tree's confidence is its predicted leaf-class probability, while bagg
 
 Bagging accuracy declined by 26.25 percentage points under masking, but it still exceeded the single tree's masked accuracy.
 
-The single tree's aggregate accuracy and mean confidence remained unchanged, although this does not establish that its predictions were identical for every image.
+The single decision tree produced identical predictions for all 80 clean and masked test images, maintaining 60.00% accuracy. This indicates that the central masking did not affect the tree's predictions on the test set.
 
 ### Cases Where Bagging Corrected a Tree Error
 
-**Example 1 — Test image 1**
+**Example 1 — Test image 1 (tie-dependent correction)**
 
 - True identity: 0
 - Single-tree prediction: 23
